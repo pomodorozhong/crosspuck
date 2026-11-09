@@ -224,7 +224,13 @@ static NSDictionary *wine_identity(pid_t pid) {
     NSDictionary *args = wine_arguments(data);
     if (!args) return nil;
     NSString *prefix = [args[@"bottle_path"] stringByResolvingSymlinksInPath].stringByStandardizingPath;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[prefix stringByAppendingPathComponent:@"cxbottle.conf"]]) return nil;
+    // The CrossOver bundle ID already identifies the client. Accept regular
+    // CrossOver bottles (cxbottle.conf) and plain Wine prefixes used by
+    // launchers that run games on the CrossOver runtime, such as Steam
+    // compatdata prefixes (system.reg).
+    NSFileManager *files = [NSFileManager defaultManager];
+    if (![files fileExistsAtPath:[prefix stringByAppendingPathComponent:@"cxbottle.conf"]] &&
+        ![files fileExistsAtPath:[prefix stringByAppendingPathComponent:@"system.reg"]]) return nil;
     return @{@"command":args[@"command"], @"bottle_path":prefix};
 }
 
