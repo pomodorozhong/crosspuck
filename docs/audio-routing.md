@@ -14,7 +14,9 @@ checks OS availability before launching it and does not reference the newer
 tap symbols, preserving the existing controller deployment target.
 
 The helper discovers Core Audio process objects with a CrossOver bundle ID,
-then verifies their `WINEPREFIX` contains `cxbottle.conf`. It reads only the
+then verifies their `WINEPREFIX` contains `cxbottle.conf` (a CrossOver bottle)
+or `system.reg` (a plain Wine prefix, such as a Steam compatdata prefix used by
+a launcher on the CrossOver runtime). It reads only the
 command name and WINEPREFIX from process arguments. It does not select clients
 by parent PID, controller bottle, game filename, or a fixed device ID.
 

@@ -98,7 +98,9 @@ selects a specific bottle and takes precedence over the menu selection, and
 
 `Follow macOS Audio Output` in the menu bar is enabled by default. It applies
 to audio from **all running CrossOver bottles**, including bottles on external
-drives, independently of the controller's selected bottle. The setting is
+drives, independently of the controller's selected bottle. It also covers games
+that a launcher runs on the CrossOver runtime in a plain Wine prefix, such as a
+Steam `compatdata` prefix. The setting is
 remembered when CrossPuck restarts. The `Audio:` line shows the current output
 or connection status.
 
